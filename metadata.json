@@ -1,0 +1,5 @@
+{
+  "name": "QuantRotate RRG Dashboard",
+  "description": "A professional-grade Relative Rotation Graph (RRG) dashboard for visualizing sector rotation across SPDR ETFs, featuring interactive historical trails, quadrant analysis, and AI-driven market insights.",
+  "requestFramePermissions": []
+}
