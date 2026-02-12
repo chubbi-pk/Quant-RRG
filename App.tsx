@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Period, TickerData, MarketInsight, Quadrant } from './types';
 import { INITIAL_TRAIL_LENGTH, QUADRANT_COLORS } from './constants';
@@ -161,25 +160,22 @@ const App: React.FC = () => {
                     <table className="w-full text-left border-collapse">
                         <thead>
                             <tr className="border-b border-slate-700 text-slate-400 text-xs uppercase tracking-wider">
-                                <th className="py-3 px-4 font-semibold">Ticker</th>
-                                <th className="py-3 px-4 font-semibold text-center">Quadrant</th>
-                                <th className="py-3 px-4 font-semibold text-right">RS-Ratio</th>
-                                <th className="py-3 px-4 font-semibold text-right">RS-Momentum</th>
-                                <th className="py-3 px-4 font-semibold text-right">Distance</th>
+                                <th className="py-3 px-4 font-semibold">Symbol</th>
+                                <th className="py-3 px-4 font-semibold">Name</th>
+                                <th className="py-3 px-4 font-semibold">Quadrant</th>
+                                <th className="py-3 px-4 text-right font-semibold">RS-Ratio</th>
+                                <th className="py-3 px-4 text-right font-semibold">RS-Mom</th>
+                                <th className="py-3 px-4 text-right font-semibold">Distance</th>
                             </tr>
                         </thead>
-                        <tbody className="text-sm font-mono">
-                            {tickerData.sort((a,b) => b.distanceFromCenter - a.distanceFromCenter).map(ticker => {
-                                const last = ticker.history[ticker.history.length-1];
+                        <tbody>
+                            {tickerData.map(ticker => {
+                                const last = ticker.history[ticker.history.length - 1];
                                 return (
                                     <tr key={ticker.symbol} className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                                        <td className="py-4 px-4 font-bold font-mono text-white">{ticker.symbol}</td>
+                                        <td className="py-4 px-4 text-slate-300">{ticker.name}</td>
                                         <td className="py-4 px-4">
-                                            <div className="flex flex-col">
-                                                <span className="font-bold text-white">{ticker.symbol}</span>
-                                                <span className="text-[10px] text-slate-500 font-sans">{ticker.name}</span>
-                                            </div>
-                                        </td>
-                                        <td className="py-4 px-4 text-center">
                                             <span 
                                                 className="px-2 py-1 rounded text-[10px] font-bold uppercase"
                                                 style={{ backgroundColor: `${QUADRANT_COLORS[ticker.currentQuadrant]}20`, color: QUADRANT_COLORS[ticker.currentQuadrant], border: `1px solid ${QUADRANT_COLORS[ticker.currentQuadrant]}40` }}
